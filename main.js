@@ -120,17 +120,9 @@ let content = "";
 let selection = document.getElementById("filter");
 
 
-//primo ciclo per inserire dinamicamente tutti gli elementi
-for(let i = 0; i < icons.length; i++){
-		
-	content += `<div class="icon">
-						<i style="color:${icons[i].color};" class="${icons[i].family} ${icons[i].prefix}${icons[i].name}"></i>
-						<div class="details">${icons[i].name}</div>
-					</div>`;
-					
-}
 
-container.innerHTML = content;
+//Inserisco la prima volta tutti gli elementi
+generateIcons(icons);
 
 
 
@@ -154,18 +146,26 @@ selection.addEventListener("change", function(){
 		content = "";
 	}
 
-	//ciclo con l'array filtrato di elementi
-	for(let i = 0; i < arrayFiltered.length; i++){
+
+	//mostro dinamicamente l'array filtrato di elementi
+	generateIcons(arrayFiltered);
+	
+});
+
+
+
+//funzione che disegna dinamicamente le icone
+function generateIcons(arrayObjects){
+	for(let i = 0; i < arrayObjects.length; i++){
 		
 		content += `<div class="icon">
-							<i style="color:${arrayFiltered[i].color};" class="${arrayFiltered[i].family} ${arrayFiltered[i].prefix}${arrayFiltered[i].name}"></i>
-							<div class="details">${arrayFiltered[i].name}</div>
+							<i style="color:${arrayObjects[i].color};" class="${arrayObjects[i].family} ${arrayObjects[i].prefix}${arrayObjects[i].name}"></i>
+							<div class="details">${arrayObjects[i].name}</div>
 						</div>`;
 						
 	}
 
 	container.innerHTML = content;
-	
-});
+}
 
 
