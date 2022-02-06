@@ -120,9 +120,49 @@ let content = "";
 let selection = document.getElementById("filter");
 
 
+//prima inseriamo il primo option per tutti i valori
+selection.innerHTML += `<option value="">All</option>`;
+
 
 //Inserisco la prima volta tutti gli elementi
 generateIcons(icons);
+
+//array che conterrà le opzioni della select
+let options = [];
+
+for(let i = 0; i < icons.length - 1; i++){
+
+
+	//se l'array di opzioni non include ancora l'opzione ciclata, allora inseriscila (per evitare doppioni)
+	if(!options.includes(icons[i].type)){
+		options.push(icons[i].type);
+	}
+	
+	console.log(options);
+
+
+
+	//PROVE VARIE CHE NON SONO ANDATE A BUON FINE
+	/* let filteredOptions = options.filter(option =>{
+		if(option[i] != option[i+1]){
+			return true;
+		}else{
+			return false;
+		}
+	});
+
+	console.log(filteredOptions); */
+
+	/* let optionList = document.querySelectorAll("option");
+	
+	console.log(optionList); */
+
+}
+
+//scorriamo lungo il nuovo array di opzioni, e concateniamo le opzioni possibili
+for(let j = 0; j < options.length; j++){
+	selection.innerHTML += `<option value="${options[j]}">${options[j]}</option>`
+}
 
 
 
