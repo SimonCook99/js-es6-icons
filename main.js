@@ -130,7 +130,7 @@ generateIcons(icons);
 //array che conterrà le opzioni della select
 let options = [];
 
-for(let i = 0; i < icons.length - 1; i++){
+for(let i = 0; i < icons.length; i++){
 
 
 	//se l'array di opzioni non include ancora l'opzione ciclata, allora inseriscila (per evitare doppioni)
@@ -198,6 +198,9 @@ selection.addEventListener("change", function(){
 function generateIcons(arrayObjects){
 	for(let i = 0; i < arrayObjects.length; i++){
 		
+		//cambio il colore dell'oggetto tramite la funzione apposita
+		arrayObjects[i].color = randomColor();
+
 		content += `<div class="icon">
 							<i style="color:${arrayObjects[i].color};" class="${arrayObjects[i].family} ${arrayObjects[i].prefix}${arrayObjects[i].name}"></i>
 							<div class="details">${arrayObjects[i].name}</div>
@@ -206,6 +209,22 @@ function generateIcons(arrayObjects){
 	}
 
 	container.innerHTML = content;
+}
+
+
+//funzione che genera un colore randomico per le icone
+function randomColor(){
+
+	const colorString = "0123456789abcdef";
+
+	let colorResult = "";
+
+	for(let i = 0; i < 6; i++){
+		colorResult += colorString[Math.floor(Math.random() * colorString.length)];
+	}
+
+	return "#" + colorResult;
+
 }
 
 
